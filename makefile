@@ -8,7 +8,8 @@ OBJS_DIR = objs/
 INC_DIR = includes/
 LIBFT_DIR = libft/
 
-SRCS_LIST = 
+SRCS_LIST = 	parsing.c \
+				main.c
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 OBJS = $(addprefix $(OBJS_DIR), $(SRCS_LIST:.c=.o))
@@ -37,7 +38,7 @@ $(NAME): $(OBJS) $(LIBFT)
 	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
 	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
-$(OBJS_DIR)%.o: %.c
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
 	@echo -n "$(CYAN)A compilar $<... $(DEF_COLOR)"
 	@sh -c 'i=0; while [ $$i -lt 10 ]; do \
@@ -50,15 +51,12 @@ $(OBJS_DIR)%.o: %.c
 	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-	$(LIBFT):
+$(LIBFT):
 	@make -sC $(LIBFT_DIR)
 
-$(MLX_LIB):
-	@make -sC $(MLX_DIR)
 clean:
 	@rm -rf $(OBJS_DIR)
 	@make -sC $(LIBFT_DIR) clean
-	@make -sC $(MLX_DIR) clean
 
 fclean: clean
 	@rm -f $(NAME) $(NAME_BONUS)
