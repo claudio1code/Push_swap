@@ -50,7 +50,8 @@ STDIO_FILES = 	ft_putchar_fd.c \
 STDLIB_FILES = 	ft_atoi.c \
 				ft_itoa.c \
 				ft_atof.c \
-				ft_atold.c
+				ft_atold.c \
+				ft.atol.c
 
 STRING_FILES = 	ft_split.c \
 				ft_strchr.c \
@@ -68,7 +69,8 @@ STRING_FILES = 	ft_split.c \
 				ft_substr.c
 
 MATH_FILES = 	ft_signal.c \
-				ft_is_double.c
+				ft_is_double.c \
+				ft_isint.c
 
 SRCS = 	$(addprefix $(SRC_DIR)/ctypes/, $(CTYPES_FILES)) \
 		$(addprefix $(SRC_DIR)/gnl/, $(GNL_FILES)) \

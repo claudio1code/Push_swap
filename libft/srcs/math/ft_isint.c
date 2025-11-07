@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_signal.c                                        :+:      :+:    :+:   */
+/*   ft_isint.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 17:28:21 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/07 16:46:23 by clados-s         ###   ########.fr       */
+/*   Created: 2025/11/07 11:05:46 by clados-s          #+#    #+#             */
+/*   Updated: 2025/11/07 14:13:09 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_signal(char *nptr)
+int	ft_isint(char *nptr)
 {
-	int	i;
-	int	sign;
+	long long	number;
 
-	i = 0;
-	sign = 1;
-	while (ft_isspace(nptr[i]))
-		i++;
-	if (!nptr[i])
+	if (!nptr || !*nptr)
 		return (0);
-	if (nptr[i] == '-')
-	{
-		sign = -1;
-		i++;
-	}
-	if (nptr[i] == '+')
-		i++;
-	return (sign);
+	number = ft_atol(nptr);
+	if (number <= 2147483647 && number >= -2147483648)
+		return (1);
+	return (0);
 }
+

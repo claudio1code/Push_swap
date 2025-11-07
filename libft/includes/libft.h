@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 14:24:09 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/22 14:21:29 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:38:07 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <fcntl.h>
+
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
+# define LONG_MAX 9223372036854775807LL
 
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
@@ -62,6 +66,8 @@ long double	ft_atold(char *nptr);
 int			ft_signal(char *nptr);
 int			ft_is_double(char *nptr);
 int			ft_isspace(int c);
+int			ft_isint(char *nptr);
+long		ft_atol(char *nptr);
 
 typedef struct s_list
 {

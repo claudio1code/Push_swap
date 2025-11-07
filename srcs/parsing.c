@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:26:32 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/06 16:47:25 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/07 14:21:48 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	valid_ints(char *arg)
 	int	i;
 
 	i = 0;
+	if (!ft_isint(arg))
+		return (0);
 	while (arg[i])
 	{
 		while (arg[i] && arg[i] == 32)
