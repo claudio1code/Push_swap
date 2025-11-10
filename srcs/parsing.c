@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:26:32 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 15:47:35 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:59:31 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*join_args(int argc, char **argv)
 	full_str = ft_strdup(argv[1]);
 	while (i < argc)
 	{
-		temp = ft_strjoin(full_str, 32);
+		temp = ft_strjoin(full_str, " ");
 		free(full_str);
 		if (!temp)
 			return (NULL);
@@ -84,7 +84,7 @@ int	verific_duplicates(t_stack *stack)
 {
 	t_stack	*current;
 	t_stack	*checker;
-	
+
 	current = stack;
 	while (current)
 	{

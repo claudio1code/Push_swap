@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 16:55:08 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 11:29:11 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:54:18 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,3 @@ long	ft_almost_atol(char *nbr)
 	}
 	return (result * sign);
 }
-

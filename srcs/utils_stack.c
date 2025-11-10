@@ -6,16 +6,16 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:20:03 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 15:47:19 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:02:42 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack *stack_new_node(void *num)
+t_stack	*stack_new_node(int *num)
 {
 	t_stack	*new_node;
-	
+
 	new_node = malloc(sizeof(t_stack));
 	if (!new_node)
 		return (NULL);
@@ -30,7 +30,7 @@ void	stack_clear(t_stack **stack)
 {
 	t_stack	*current;
 	t_stack	*temp;
-	
+
 	if (!stack || !*stack)
 		return ;
 	current = *stack;
@@ -55,6 +55,7 @@ static t_stack	*stack_get_last(t_stack *stack)
 void	stack_add_back(t_stack **stack, t_stack *new_node)
 {
 	t_stack	*last_node;
+
 	if (!stack || !new_node)
 		return ;
 	if (*stack == NULL)
@@ -66,5 +67,3 @@ void	stack_add_back(t_stack **stack, t_stack *new_node)
 	last_node->next = new_node;
 	new_node->prev = last_node;
 }
-
-
