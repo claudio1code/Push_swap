@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:20:03 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 16:17:40 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:14:02 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,21 +68,18 @@ void	stack_add_back(t_stack **stack, t_stack *new_node)
 	new_node->prev = last_node;
 }
 
-void	print_stack(t_stack *stack, char *name)
+int	is_sorted(t_stack *stack)
 {
-	t_stack	*temp;
-
-	temp = stack;
-	ft_printf("---- Stack %s ----\n", name);
-	if (!temp)
+	t_stack	*current;
+	
+	if (!stack)
+		return (0);
+	current = stack;
+	while (current && current->next)
 	{
-		ft_printf("(vazia)\n");
-		return ;
+		if (current->num > current->next->num)
+			return (0);
+		current = current->next;
 	}
-	while (temp)
-	{
-		ft_printf("%d\n", temp->num);
-		temp = temp->next;
-	}
-	ft_printf("--------------------\n");
+	return (1);
 }
