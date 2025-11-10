@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:20:03 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 14:32:55 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 14:42:14 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,28 @@ void	stack_clear(t_stack **stack)
 		current = temp;
 	}
 	*stack = NULL;
+}
+
+static t_stack	*stack_get_last(t_stack *stack)
+{
+	if (!stack)
+		return (NULL);
+	while (stack->next)
+		stack = stack->next;
+	return (stack);
+}
+
+void	stack_add_back(t_stack **stack, t_stack *new_node)
+{
+	t_stack	*last_node;
+	if (!stack || !new_node)
+		return ;
+	if (*stack == NULL)
+	{
+		*stack = new_node;
+		return ;
+	}
+	last_node = stack_get_last(*stack);
+	last_node->next = new_node;
+	new_node->prev = last_node;
 }
