@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:58:04 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 15:49:47 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:15:42 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 		stack_clear(&stack_a);
 		return (1);
 	}
-
+	print_stack(stack_a, "A");
 	free_split(numbers_array);
 	stack_clear(&stack_a);
 	return (0);

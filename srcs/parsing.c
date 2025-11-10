@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:26:32 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 15:59:31 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:17:22 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	load_stack_a(t_stack **stack_a, char **numbers)
 		if (!ft_isint(numbers[i]))
 			return (0);
 		num_long = ft_almost_atol(numbers[i]);
-		new_node = stack_new_node((int)num_long);
+		new_node = stack_new_node(num_long);
 		if (!new_node)
 			return (0);
 		stack_add_back(stack_a, new_node);

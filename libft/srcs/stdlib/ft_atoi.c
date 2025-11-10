@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:06:44 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 10:41:40 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:20:04 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_atoi(const char *nptr)
 
 	i = 0;
 	sign = 1;
-	number = ft_atol(nptr);
+	number = ft_almost_atol((char *)nptr);
 	if (number >= INT_MAX)
 		return (INT_MAX);
 	else if (number <= INT_MIN)

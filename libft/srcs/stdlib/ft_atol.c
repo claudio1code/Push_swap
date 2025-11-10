@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 16:55:08 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 15:54:18 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:20:32 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_overflow_int(char *nbr)
 	int	len;
 
 	i = 0;
-	while (ft_isspace(nbr))
+	while (ft_isspace(nbr[i]))
 		i++;
 	if (nbr[i] == '-' || nbr[i] == '+')
 		i++;
