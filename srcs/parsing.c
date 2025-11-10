@@ -6,11 +6,12 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:26:32 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/07 14:21:48 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 11:28:21 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 
 static int	valid_ints(char *arg)
 {

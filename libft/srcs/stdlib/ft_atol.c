@@ -6,13 +6,13 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 16:55:08 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 11:13:52 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 11:29:11 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_overflow_long(char *nbr)
+int	ft_overflow_int(char *nbr)
 {
 	int	i;
 	int	len;
@@ -27,7 +27,7 @@ int	ft_overflow_long(char *nbr)
 	len = i;
 	while (nbr[len] && ft_isdigit(nbr[len]))
 		len++;
-	if (len <= 18)
+	if (len <= 17)
 		return (1);
 	return (0);
 }
