@@ -6,13 +6,13 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:20:03 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 14:42:14 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 14:59:38 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack *stack_a(void *num)
+t_stack *stack_new_node(void *num)
 {
 	t_stack	*new_node;
 	

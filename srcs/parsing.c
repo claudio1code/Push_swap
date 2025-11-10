@@ -6,30 +6,28 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:26:32 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 14:06:41 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:01:22 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	valid_ints(char *arg)
+static int	is_valid_format(char *arg)
 {
 	int	i;
 
 	i = 0;
-	if (!ft_isint(arg))
+	if (!arg || !arg[0])
 		return (0);
+	if (arg[i] == '+' || arg[i] == '-')
+	{
+		i++;
+		if (!arg[i])
+			return (0);
+	}
 	while (arg[i])
 	{
-		while (arg[i] && arg[i] == 32)
-			i++;
-		if (arg[i] == '+' || arg[i] == '-')
-		{
-			if (!arg[i + 1] || (i > 0 && arg[i - 1] != 32)
-				|| !ft_isdigit(arg[i + 1]))
-				return (0);
-		}
-		else if (!ft_isdigit(arg[i]))
+		if (!ft_isdigit(arg[i]))
 			return (0);
 		i++;
 	}
@@ -77,3 +75,25 @@ int	validate_arrays(char **nbrs)
 	return (1);
 }
 
+int	load_stack_a(t_stack **stack_a, char **numbers)
+{
+	int		i;
+	long	num_long;
+	t_stack	*new_node;
+
+	i = 0;
+	while (numbers[i])
+	{
+		if (!is_valid_format(numbers[i]))
+			return (0);
+		if (!ft_isint(numbers[i]))
+			return (0);
+		num_long = ft_almost_atol(numbers[i]);
+		new_node = stack_new_node((int)num_long);
+		if (!new_node)
+			return (0);
+		stack_add_back(stack_a, new_node);
+		i++;
+	}
+	return (1);
+}
