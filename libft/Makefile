@@ -51,7 +51,7 @@ STDLIB_FILES = 	ft_atoi.c \
 				ft_itoa.c \
 				ft_atof.c \
 				ft_atold.c \
-				ft.atol.c
+				ft_atol.c
 
 STRING_FILES = 	ft_split.c \
 				ft_strchr.c \
