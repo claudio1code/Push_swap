@@ -9,7 +9,8 @@ INC_DIR = includes/
 LIBFT_DIR = libft/
 
 SRCS_LIST = 	parsing.c \
-				main.c
+				main.c \
+				utils_stack.c
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 OBJS = $(addprefix $(OBJS_DIR), $(SRCS_LIST:.c=.o))

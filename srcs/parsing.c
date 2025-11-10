@@ -6,12 +6,11 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:26:32 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 11:28:21 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 14:06:41 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 static int	valid_ints(char *arg)
 {
@@ -37,19 +36,44 @@ static int	valid_ints(char *arg)
 	return (1);
 }
 
-int	valid_input(char **argv)
+char	*join_args(int argc, char **argv)
 {
-	int	j;
+	char	*full_str;
+	char	*temp;
+	int		i;
 
-	j = 0;
-	while (argv[j])
+	i = 2;
+	full_str = ft_strdup(argv[1]);
+	while (i < argc)
 	{
-		if (valid_ints(argv[j]))
-		{
-			ft_split(argv[j], 32);
-			return (1);
-		}
-		j++;
+		temp = ft_strjoin(full_str, 32);
+		free(full_str);
+		if (!temp)
+			return (NULL);
+		full_str = ft_strjoin(temp, argv[i]);
+		free(temp);
+		if (!full_str)
+			return (NULL);
+		i++;
 	}
-	return (0);
+	return (full_str);
 }
+
+int	validate_arrays(char **nbrs)
+{
+	int	i;
+
+	i = 0;
+	if (!nbrs[0])
+		return (0);
+	while (nbrs[i])
+	{
+		if (!valid_ints(nbrs[i]))
+			return (0);
+		i++;
+	}
+////////////
+
+	return (1);
+}
+

@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:04:26 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/06 16:40:48 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 14:34:59 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@ typedef struct s_stack
 	struct s_stack	*prev;
 }t_stack;
 
-int	valid_input(char **argv);
-int	main(int argc, char **argv);
+int		valid_input(char **argv);
+int		main(int argc, char **argv);
+char	*join_args(int argc, char **argv);
+int		validate_arrays(char **nbrs);
+t_stack *stack_a(void *num);
+void	stack_clear(t_stack **stack);
+
 
 #endif
