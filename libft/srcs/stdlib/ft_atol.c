@@ -6,13 +6,33 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 16:55:08 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 10:38:02 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 11:13:52 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long	ft_atol(char *nbr)
+int	ft_overflow_long(char *nbr)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	while (ft_isspace(nbr))
+		i++;
+	if (nbr[i] == '-' || nbr[i] == '+')
+		i++;
+	while (nbr[i] == '0')
+		i++;
+	len = i;
+	while (nbr[len] && ft_isdigit(nbr[len]))
+		len++;
+	if (len <= 18)
+		return (1);
+	return (0);
+}
+
+long	ft_almost_atol(char *nbr)
 {
 	long	result;
 	int		sign;

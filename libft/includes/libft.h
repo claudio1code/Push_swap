@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 14:24:09 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 10:36:13 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 11:13:45 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int			ft_signal(char *nptr);
 int			ft_is_double(char *nptr);
 int			ft_isspace(int c);
 int			ft_isint(char *nptr);
-long		ft_atol(char *nptr);
+long		ft_almost_atol(char *nptr);
+int			ft_overflow_long(char *nbr);
 
 typedef struct s_list
 {
