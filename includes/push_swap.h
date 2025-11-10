@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:04:26 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 14:59:28 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:47:15 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int		validate_arrays(char **nbrs);
 t_stack *stack_new_node(void *num);
 void	stack_clear(t_stack **stack);
 void	stack_add_back(t_stack **stack, t_stack *new_node);
+int		load_stack_a(t_stack **stack_a, char **numbers);
+int		verific_duplicates(t_stack *stack);
 
 
 #endif

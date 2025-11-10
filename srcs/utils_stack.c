@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:20:03 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 14:59:38 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:47:19 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_stack *stack_new_node(void *num)
 {
 	t_stack	*new_node;
 	
-	new_node = malloc(sizeof(t_list));
+	new_node = malloc(sizeof(t_stack));
 	if (!new_node)
 		return (NULL);
 	new_node->num = num;
@@ -66,3 +66,5 @@ void	stack_add_back(t_stack **stack, t_stack *new_node)
 	last_node->next = new_node;
 	new_node->prev = last_node;
 }
+
+
