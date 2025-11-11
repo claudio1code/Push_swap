@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   operations_push.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:04:11 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/11 16:14:22 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/11 17:19:34 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ void	pa(t_stack **stack_a, t_stack **stack_b)
 void	pb(t_stack **stack_a, t_stack **stack_b)
 {
 	push(stack_b, stack_a);
-	printf("pb\n");
+	ft_printf("pb\n");
 }

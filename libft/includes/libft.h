@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 14:24:09 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 16:21:47 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/11 17:21:02 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 # define LIBFT_H
 
-# include <stdio.h>
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
