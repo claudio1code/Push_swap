@@ -10,7 +10,8 @@ LIBFT_DIR = libft/
 
 SRCS_LIST = 	parsing.c \
 				main.c \
-				utils_stack.c
+				utils_stack.c \
+				indexing.c
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 OBJS = $(addprefix $(OBJS_DIR), $(SRCS_LIST:.c=.o))

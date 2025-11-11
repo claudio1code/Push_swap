@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:20:03 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 17:14:02 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:34:15 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ t_stack	*stack_new_node(int num)
 
 void	stack_clear(t_stack **stack)
 {
-	t_stack	*current;
+	t_stack	*actual;
 	t_stack	*temp;
 
 	if (!stack || !*stack)
 		return ;
-	current = *stack;
-	while (current)
+	actual = *stack;
+	while (actual)
 	{
-		temp = current->next;
-		free(current);
-		current = temp;
+		temp = actual->next;
+		free(actual);
+		actual = temp;
 	}
 	*stack = NULL;
 }
@@ -70,16 +70,16 @@ void	stack_add_back(t_stack **stack, t_stack *new_node)
 
 int	is_sorted(t_stack *stack)
 {
-	t_stack	*current;
+	t_stack	*actual;
 	
 	if (!stack)
 		return (0);
-	current = stack;
-	while (current && current->next)
+	actual = stack;
+	while (actual && actual->next)
 	{
-		if (current->num > current->next->num)
+		if (actual->num > actual->next->num)
 			return (0);
-		current = current->next;
+		actual = actual->next;
 	}
 	return (1);
 }

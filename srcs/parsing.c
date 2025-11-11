@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:26:32 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 16:17:22 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:34:11 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,20 +82,20 @@ int	load_stack_a(t_stack **stack_a, char **numbers)
 
 int	verific_duplicates(t_stack *stack)
 {
-	t_stack	*current;
+	t_stack	*actual;
 	t_stack	*checker;
 
-	current = stack;
-	while (current)
+	actual = stack;
+	while (actual)
 	{
-		checker = current->next;
+		checker = actual->next;
 		while (checker)
 		{
-			if (current->num == checker->num)
+			if (actual->num == checker->num)
 				return (1);
 			checker = checker->next;
 		}
-		current = current->next;
+		actual = actual->next;
 	}
 	return (0);
 }
