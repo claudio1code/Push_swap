@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:20:03 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/11 13:34:15 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/11 16:05:58 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,12 @@ void	stack_add_back(t_stack **stack, t_stack *new_node)
 	new_node->prev = last_node;
 }
 
-int	is_sorted(t_stack *stack)
+void	stack_add_front(t_stack **stack, t_stack *new_node)
 {
-	t_stack	*actual;
-	
-	if (!stack)
-		return (0);
-	actual = stack;
-	while (actual && actual->next)
-	{
-		if (actual->num > actual->next->num)
-			return (0);
-		actual = actual->next;
-	}
-	return (1);
+	if (!stack || !new_node)
+		return ;
+	new_node->next = *stack;
+	if (*stack)
+		(*stack)->prev = new_node;
+	*stack = new_node;
 }

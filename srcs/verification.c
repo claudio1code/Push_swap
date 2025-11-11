@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   indexing.c                                         :+:      :+:    :+:   */
+/*   verification.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 13:26:42 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/11 16:05:52 by clados-s         ###   ########.fr       */
+/*   Created: 2025/11/11 16:04:53 by clados-s          #+#    #+#             */
+/*   Updated: 2025/11/11 16:05:41 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	assingn_index(t_stack *stack)
+int	is_sorted(t_stack *stack)
 {
 	t_stack	*actual;
-	t_stack	*checker;
-	int		pos;
-
+	
+	if (!stack)
+		return (0);
 	actual = stack;
-	while (actual)
+	while (actual && actual->next)
 	{
-		pos = 0;
-		checker = stack;
-		while (checker)
-		{
-			if (actual->num > checker->num)
-				pos++;
-			checker = checker->next;
-		}
-		actual->pos = pos;
+		if (actual->num > actual->next->num)
+			return (0);
 		actual = actual->next;
 	}
+	return (1);
 }
-
-
-
