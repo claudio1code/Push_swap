@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:04:26 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/11 18:24:34 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:07:39 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		verific_duplicates(t_stack *stack);
 int		is_sorted(t_stack *stack);
 void	stack_add_front(t_stack **stack, t_stack *new_node);
 t_stack	*stack_get_last(t_stack *stack);
+void	assign_index(t_stack *stack);
 void	ra(t_stack **stack_a);
 void	rb(t_stack **stack_b);
 void	rr(t_stack **stack_a, t_stack **stack_b);
@@ -45,5 +46,6 @@ void	ss(t_stack **stack_a, t_stack **stack_b);
 void	rra(t_stack **stack_a);
 void	rrb(t_stack **stack_b);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
+t_stack	*init_stack(int argc, char **argv);
 
 #endif

@@ -6,19 +6,19 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:58:04 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 17:19:08 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:07:23 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	test_parsing(t_stack *stack, char *name)
+static void	test(t_stack **stack, char *name)
 {
 	t_stack	*temp;
 
-	temp = stack;
+	temp = *stack;
 	ft_printf("---- Stack %s ----\n", name);
-	if (is_sorted(stack))
+	if (is_sorted(*stack))
 		ft_printf("---- Ordenada ----\n");
 	if (!temp)
 	{
@@ -31,33 +31,57 @@ static void	test_parsing(t_stack *stack, char *name)
 		temp = temp->next;
 	}
 	ft_printf("--------------------\n");
+	sa(stack);
+	temp = *stack;
+	ft_printf("---- Stack %s ----\n", name);
+		while (temp)
+	{
+		ft_printf("num: %d (pos:%d)\n", temp->num, temp->pos);
+		temp = temp->next;
+	}
+	ft_printf("--------------------\n");
+	
 }
-
-int	main(int argc, char **argv)
+t_stack	*init_stack(int argc, char **argv)
 {
-	char	*arg_string;
-	char	**numbers_array;
+	char	*arg_str;
+	char	**nbrs_array;
 	t_stack	*stack_a;
 
-	if (argc < 2)
-		return (0);
 	stack_a = NULL;
-	arg_string = join_args(argc, argv);
-	if (!arg_string)
-		return (0);
-	numbers_array = ft_split(arg_string, ' ');
-	free(arg_string);
-	if (!numbers_array)
-		return (0);
-	if (!load_stack_a(&stack_a, numbers_array) || verific_duplicates(stack_a))
+	if (argc < 2)
+		return (NULL);
+	arg_str = join_args(argc, argv);
+	if (!arg_str)
+		return (NULL);
+	nbrs_array = ft_split(arg_str, ' ');
+	free(arg_str);
+	if (!nbrs_array)
+		return (NULL);
+	if (!load_stack_a(&stack_a, nbrs_array) || verific_duplicates(stack_a))
 	{
 		ft_printf("Error\n");
-		free_split(numbers_array);
+		free_split(nbrs_array);
 		stack_clear(&stack_a);
-		return (1);
+		return (NULL);
 	}
-	test_parsing(stack_a, "A");
-	free_split(numbers_array);
+	free_split(nbrs_array);
+	return (stack_a);
+}
+int	main(int argc, char **argv)
+{
+	t_stack	*stack_a;
+
+	stack_a = init_stack(argc, argv);
+	if (!stack_a)
+		return (1);
+	if (is_sorted(stack_a))
+	{
+		stack_clear(&stack_a);
+		return (0);
+	}
+	assign_index(stack_a);
+	test(&stack_a, "A");
 	stack_clear(&stack_a);
 	return (0);
 }
