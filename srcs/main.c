@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:58:04 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/12 16:09:05 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/12 17:34:58 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ static void	test(t_stack **stack, char *name)
 		temp = temp->next;
 	}
 	ft_printf("--------------------\n");
-	sa(stack);
-	sa(stack);
-	rra(stack);
 	temp = *stack;
 	ft_printf("---- Stack %s ----\n", name);
 		while (temp)
@@ -72,6 +69,24 @@ t_stack	*init_stack(int argc, char **argv)
 	return (stack_a);
 }
 
+static void	push_swap(t_stack **stack_a)
+{
+	t_stack	*stack_b;
+	int		size;
+
+	stack_b = NULL;
+	size = get_stack_size(*stack_a);
+	if (is_sorted(*stack_a))
+		return ;
+	assign_index(*stack_a);
+	if (size == 2)
+		sa(stack_a);
+	else if (size == 3)
+		sort_three(stack_a);
+	
+	
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
@@ -79,12 +94,7 @@ int	main(int argc, char **argv)
 	stack_a = init_stack(argc, argv);
 	if (!stack_a)
 		return (1);
-	if (is_sorted(stack_a))
-	{
-		stack_clear(&stack_a);
-		return (0);
-	}
-	assign_index(stack_a);
+	push_swap(&stack_a);
 	test(&stack_a, "A");
 	stack_clear(&stack_a);
 	return (0);
