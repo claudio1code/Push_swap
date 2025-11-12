@@ -16,7 +16,8 @@ SRCS_LIST = 	parsing.c \
 				swap_operations.c \
 				rotate_operations.c \
 				rev_rotate_operations.c \
-				verification.c
+				verification.c \
+				sort_small.c
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 OBJS = $(addprefix $(OBJS_DIR), $(SRCS_LIST:.c=.o))
