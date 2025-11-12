@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:58:04 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/12 14:07:23 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/12 16:09:05 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static void	test(t_stack **stack, char *name)
 	}
 	ft_printf("--------------------\n");
 	sa(stack);
+	sa(stack);
+	rra(stack);
 	temp = *stack;
 	ft_printf("---- Stack %s ----\n", name);
 		while (temp)
@@ -42,6 +44,7 @@ static void	test(t_stack **stack, char *name)
 	ft_printf("--------------------\n");
 	
 }
+
 t_stack	*init_stack(int argc, char **argv)
 {
 	char	*arg_str;
@@ -68,6 +71,7 @@ t_stack	*init_stack(int argc, char **argv)
 	free_split(nbrs_array);
 	return (stack_a);
 }
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;

@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
 temp.c
+push_swap
 
 # Object files
 *.o
