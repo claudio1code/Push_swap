@@ -2,6 +2,7 @@
 *.d
 temp.c
 push_swap
+checker_linux
 
 # Object files
 *.o
