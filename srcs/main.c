@@ -6,41 +6,11 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:58:04 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/13 16:21:00 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/13 20:02:55 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void	test(t_stack **stack, char *name)
-{
-	t_stack	*temp;
-
-	temp = *stack;
-	ft_printf("---- Stack %s ----\n", name);
-	if (is_sorted(*stack))
-		ft_printf("---- Ordenada ----\n");
-	if (!temp)
-	{
-		ft_printf("(vazia)\n");
-		return ;
-	}
-	while (temp)
-	{
-		ft_printf("%d\n", temp->num);
-		temp = temp->next;
-	}
-	ft_printf("--------------------\n");
-	temp = *stack;
-	ft_printf("---- Stack %s ----\n", name);
-		while (temp)
-	{
-		ft_printf("num: %d (pos:%d)\n", temp->num, temp->pos);
-		temp = temp->next;
-	}
-	ft_printf("--------------------\n");
-	
-}
 
 t_stack	*init_stack(int argc, char **argv)
 {
@@ -75,7 +45,7 @@ static void	push_swap(t_stack **stack_a)
 	int		size;
 
 	stack_b = NULL;
-	size = get_stack_size(*stack_a);
+	size = size_stack(*stack_a);
 	if (is_sorted(*stack_a))
 		return ;
 	assign_index(*stack_a);
@@ -87,8 +57,8 @@ static void	push_swap(t_stack **stack_a)
 		sort_four(stack_a, &stack_b);
 	else if (size == 5)
 		sort_five(stack_a, &stack_b);
-	
-	
+	else
+		sort_hadix(stack_a, &stack_b);
 }
 
 int	main(int argc, char **argv)
@@ -99,9 +69,6 @@ int	main(int argc, char **argv)
 	if (!stack_a)
 		return (1);
 	push_swap(&stack_a);
-	test(&stack_a, "A");
 	stack_clear(&stack_a);
 	return (0);
 }
-
-

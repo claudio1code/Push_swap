@@ -17,7 +17,8 @@ SRCS_LIST = 	parsing.c \
 				rotate_operations.c \
 				rev_rotate_operations.c \
 				verification.c \
-				sort_small.c
+				sort_small.c \
+				sort_hadix.c
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 OBJS = $(addprefix $(OBJS_DIR), $(SRCS_LIST:.c=.o))
@@ -43,7 +44,7 @@ $(NAME): $(OBJS) $(LIBFT)
 		echo -n "\b\\"; sleep 0.05; \
 		i=$$(($$i+1)); \
 	done'
-	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)\r"
+	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
 	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
