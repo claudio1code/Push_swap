@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:04:26 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/12 17:31:51 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/13 16:17:37 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@ void	rrr(t_stack **stack_a, t_stack **stack_b);
 t_stack	*init_stack(int argc, char **argv);
 void	sort_three(t_stack **stack_a);
 int		get_stack_size(t_stack *stack);
+void	sort_four(t_stack **stack_a, t_stack **stack_b);
+void	sort_five(t_stack **stack_a, t_stack **stack_b);
 
 #endif

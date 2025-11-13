@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:58:04 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/12 17:34:58 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/13 16:21:00 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,10 @@ static void	push_swap(t_stack **stack_a)
 		sa(stack_a);
 	else if (size == 3)
 		sort_three(stack_a);
+	else if (size == 4)
+		sort_four(stack_a, &stack_b);
+	else if (size == 5)
+		sort_five(stack_a, &stack_b);
 	
 	
 }

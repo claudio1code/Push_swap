@@ -43,7 +43,7 @@ $(NAME): $(OBJS) $(LIBFT)
 		echo -n "\b\\"; sleep 0.05; \
 		i=$$(($$i+1)); \
 	done'
-	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
+	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)\r"
 	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c

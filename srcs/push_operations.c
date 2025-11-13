@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations_push.c                                  :+:      :+:    :+:   */
+/*   push_operations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:04:11 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/11 17:19:34 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/13 10:47:07 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	push(t_stack **stack_dest, t_stack **stack_src)
 {
 	t_stack	*node_to_push;
-	
+
 	if (!stack_src || !*stack_src)
 		return ;
 	node_to_push = *stack_src;

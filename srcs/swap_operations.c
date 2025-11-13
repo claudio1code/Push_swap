@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations_swap.c                                  :+:      :+:    :+:   */
+/*   swap_operations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 16:23:24 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/11 17:19:26 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/13 10:46:31 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void swap(t_stack **stack)
 {
 	t_stack	*first;
 	t_stack	*second;
-	
+
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
 	first = *stack;

@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:26:42 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/12 14:05:07 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/13 10:45:43 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,3 @@ void	assign_index(t_stack *stack)
 		actual = actual->next;
 	}
 }
-
-
-
