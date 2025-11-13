@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:58:04 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/13 20:02:55 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/13 20:32:00 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	push_swap(t_stack **stack_a)
 	else if (size == 5)
 		sort_five(stack_a, &stack_b);
 	else
-		sort_hadix(stack_a, &stack_b);
+		sort_radix(stack_a, &stack_b);
 }
 
 int	main(int argc, char **argv)

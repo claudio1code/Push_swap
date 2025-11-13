@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:37:04 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/13 20:02:03 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/13 20:31:36 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	get_max_bits(t_stack *stack_a)
 	return (max_bits);
 }
 
-void	sort_hadix(t_stack **stack_a, t_stack **stack_b)
+void	sort_radix(t_stack **stack_a, t_stack **stack_b)
 {
 	int	i;
 	int	j;
