@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claudio <claudio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:06:44 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/10 16:20:04 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/15 13:46:55 by claudio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,8 @@
 
 int	ft_atoi(const char *nptr)
 {
-	int		i;
 	long	number;
-	int		sign;
 
-	i = 0;
-	sign = 1;
 	number = ft_almost_atol((char *)nptr);
 	if (number >= INT_MAX)
 		return (INT_MAX);

@@ -18,7 +18,7 @@ SRCS_LIST = 	parsing.c \
 				rev_rotate_operations.c \
 				verification.c \
 				sort_small.c \
-				sort_hadix.c
+				sort_radix.c
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 OBJS = $(addprefix $(OBJS_DIR), $(SRCS_LIST:.c=.o))
@@ -37,28 +37,28 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
 	@echo -n "$(YELLOW)A linkar $(NAME)... $(DEF_COLOR)"
-	@sh -c 'i=0; while [ $$i -lt 10 ]; do \
+	@sh -c '(while kill -0 $$PPID 2>/dev/null; do \
 		echo -n "\b|"; sleep 0.05; \
 		echo -n "\b/"; sleep 0.05; \
 		echo -n "\b-"; sleep 0.05; \
 		echo -n "\b\\"; sleep 0.05; \
-		i=$$(($$i+1)); \
-	done'
-	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
-	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+	done) & \
+	trap "kill $$!" EXIT; \
+	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)'
+	@echo "\b$(GREEN)OK!$(DEF_COLOR)"
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
 	@echo -n "$(CYAN)A compilar $<... $(DEF_COLOR)"
-	@sh -c 'i=0; while [ $$i -lt 10 ]; do \
+	@sh -c '(while kill -0 $$PPID 2>/dev/null; do \
 		echo -n "\b|"; sleep 0.05; \
 		echo -n "\b/"; sleep 0.05; \
 		echo -n "\b-"; sleep 0.05; \
 		echo -n "\b\\"; sleep 0.05; \
-		i=$$(($$i+1)); \
-	done'
-	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	done) & \
+	trap "kill $$!" EXIT; \
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@'
+	@echo "\b$(GREEN)OK!$(DEF_COLOR)"
 
 $(LIBFT):
 	@make -sC $(LIBFT_DIR)
