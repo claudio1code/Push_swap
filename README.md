@@ -1,305 +1,138 @@
 # Push_swap
 
-> Porque Swap_push não parece tão natural 😄
+## 📑 Visão Geral
 
-## 📋 Índice
+O **Push_swap** é um projeto de algoritmos de alta eficiência desenvolvido como parte do currículo da 42. O objetivo principal é ordenar uma pilha de inteiros (Pilha A) utilizando um conjunto restrito de instruções e uma pilha auxiliar (Pilha B), minimizando o custo computacional (número de operações).
 
-- [Sobre o Projeto](#sobre-o-projeto)
-- [Algoritmos Implementados](#algoritmos-implementados)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Compilação e Uso](#compilação-e-uso)
-- [Operações Disponíveis](#operações-disponíveis)
-- [Exemplos de Uso](#exemplos-de-uso)
-- [Testes e Validação](#testes-e-validação)
-- [Desempenho](#desempenho)
+Este projeto implementa uma versão otimizada do **Radix Sort** (ordenação por base) utilizando operações bit a bit, precedido por uma etapa de **Indexação** (Coordinate Compression).
 
----
-
-## 🎯 Sobre o Projeto
-
-Push_swap é um projeto da 42 que consiste em ordenar uma pilha de números inteiros usando um conjunto limitado de operações, com o objetivo de usar o menor número possível de movimentos.
-
-O programa recebe uma sequência de números inteiros e retorna uma lista de operações que, quando executadas, ordenam os números em ordem crescente na pilha A.
-
-### Objetivos
-
-- ✅ Ordenar números usando apenas duas pilhas (A e B)
-- ✅ Minimizar o número de operações necessárias
-- ✅ Validar entrada e tratar erros
-- ✅ Implementar algoritmos eficientes para diferentes tamanhos de entrada
-
----
-
-## 🧮 Algoritmos Implementados
-
-### 1. **Ordenação para 2-3 elementos**
-Algoritmo simples e otimizado com casos específicos para cada combinação possível.
-
-### 2. **Ordenação para 4-5 elementos**
-Estratégia que move os menores elementos para a pilha B, ordena o restante e reintegra os elementos.
-
-### 3. **Radix Sort (6+ elementos)**
-Algoritmo de ordenação por bit implementado especialmente para o push_swap:
-- Ordena os números bit a bit
-- Complexidade: O(n × k), onde k é o número de bits necessários
-- Muito eficiente para grandes volumes de dados
-- Usa indexação para trabalhar com posições relativas
-
-#### Como funciona o Radix Sort:
-
-1. **Indexação**: Cada número recebe um índice baseado em sua posição relativa
-2. **Iteração por bits**: Para cada bit (do menos significativo ao mais significativo):
-   - Números com bit 0 vão para a pilha B
-   - Números com bit 1 são rotacionados na pilha A
-3. **Reunificação**: Todos os elementos de B voltam para A
-4. **Repetição**: O processo se repete para cada bit até ordenar completamente
-
----
-
-## 📁 Estrutura do Projeto
-
-```
-push_swap/
-├── includes/
-│   └── push_swap.h          # Cabeçalhos e estruturas
-├── libft/                   # Biblioteca personalizada
-│   ├── includes/
-│   ├── srcs/
-│   └── Makefile
-├── srcs/
-│   ├── main.c              # Função principal e inicialização
-│   ├── parsing.c           # Validação e parsing de argumentos
-│   ├── indexing.c          # Sistema de indexação
-│   ├── utils_stack.c       # Funções auxiliares de pilha
-│   ├── verification.c      # Verificações (sorted, duplicatas)
-│   ├── push_operations.c   # Operações pa e pb
-│   ├── swap_operations.c   # Operações sa, sb e ss
-│   ├── rotate_operations.c # Operações ra, rb e rr
-│   ├── rev_rotate_operations.c # Operações rra, rrb e rrr
-│   ├── sort_small.c        # Algoritmos para 2-5 elementos
-│   └── sort_radix.c        # Algoritmo Radix Sort
-├── Makefile
-├── LICENSE
-└── README.md
-```
+## 🛠️ Arquitetura Técnica
 
 ### Estrutura de Dados
+
+O projeto utiliza uma **Lista Duplamente Encadeada** para representar as pilhas. Esta escolha permite acesso eficiente (O(1)) tanto ao topo quanto à base da pilha, facilitando as operações de rotação (`rotate` e `reverse rotate`).
+
+Definição da estrutura em `includes/push_swap.h`:
 
 ```c
 typedef struct s_stack
 {
-    int             num;    // Número armazenado
-    int             pos;    // Índice/posição relativa
-    struct s_stack  *next;  // Próximo nó
-    struct s_stack  *prev;  // Nó anterior
+    int             num;    // O valor inteiro original
+    int             pos;    // Índice simplificado (rank) após indexação
+    struct s_stack  *next;  // Ponteiro para o próximo elemento (abaixo)
+    struct s_stack  *prev;  // Ponteiro para o elemento anterior (acima)
 } t_stack;
 ```
 
----
+### Pré-processamento: Indexação
 
-## 🔧 Compilação e Uso
+Para otimizar a ordenação e permitir o uso eficiente do Radix Sort independentemente da magnitude dos números de entrada (incluindo números negativos), é realizada uma etapa de pré-processamento chamada **Indexação** ou *Coordinate Compression*.
+
+1.  A lista de entrada é percorrida.
+2.  Para cada número, conta-se quantos elementos na lista são menores que ele.
+3.  Este contador define o campo `pos` (rank).
+4.  O resultado é uma lista normalizada de `0` a `N-1`.
+
+Isso garante que o Radix Sort trabalhe sempre com inteiros positivos e contíguos, eliminando a necessidade de tratar números negativos ou grandes lacunas entre valores.
+
+## 🚀 Algoritmos de Ordenação
+
+O programa seleciona dinamicamente a estratégia de ordenação baseada no tamanho da entrada (`N`).
+
+### 1. Pequenos Conjuntos (`N <= 5`)
+Para entradas pequenas, o overhead do Radix Sort não justifica seu uso. São aplicados algoritmos *ad-hoc*:
+
+-   **N = 2**: Swap simples se necessário.
+-   **N = 3**: Lógica de permutação otimizada (máximo 2 operações).
+-   **N = 4 ou 5**:
+    1.  Identifica o(s) menor(es) elemento(s) baseado no índice (`pos`).
+    2.  Move o(s) menor(es) para o topo da Pilha A (usando `ra` ou `rra` para otimizar a distância).
+    3.  Empurra para a Pilha B (`pb`).
+    4.  Ordena os 3 restantes.
+    5.  Retorna elementos da Pilha B para A (`pa`).
+
+### 2. Radix Sort (`N > 5`)
+Para grandes conjuntos, implementa-se o **LSD (Least Significant Digit) Radix Sort** em base binária.
+
+-   **Complexidade de Tempo**: `O(N * k)`, onde `k` é o número de bits do maior índice (log₂N).
+-   **Complexidade de Espaço**: `O(N)`.
+
+**Funcionamento:**
+O algoritmo itera bit a bit, do menos significativo (LSB) ao mais significativo (MSB), sobre o campo `pos`:
+
+1.  Para cada bit `j` (de 0 até `max_bits`):
+    -   Percorre todos os elementos da Pilha A.
+    -   Se o bit `j` do índice (`pos`) for `0`: empurra para a Pilha B (`pb`).
+    -   Se o bit `j` do índice (`pos`) for `1`: rotaciona a Pilha A (`ra`), mantendo-o na pilha.
+2.  Após percorrer a Pilha A, todos os elementos da Pilha B são retornados para A (`pa`).
+3.  O processo se repete para o próximo bit.
+4.  Ao final, a pilha está ordenada.
+
+## 💻 Instalação e Compilação
 
 ### Requisitos
+-   Compilador C (GCC ou Clang)
+-   Make
 
-- GCC ou Clang
-- Make
-- Sistema Unix/Linux ou macOS
-
-### Compilação
+### Comandos
+O projeto utiliza um `Makefile` para gerenciamento.
 
 ```bash
-# Clonar o repositório
-git clone https://github.com/seu-usuario/push_swap.git
-cd push_swap
-
-# Compilar o projeto
+# Compilar o executável
 make
 
-# Limpar arquivos objeto
+# Recompilar do zero
+make re
+
+# Limpar objetos
 make clean
 
-# Limpar tudo (incluindo executável)
+# Limpar objetos e executável
 make fclean
-
-# Recompilar tudo
-make re
 ```
 
-### Uso Básico
+## 🎮 Como Usar
+
+O executável `push_swap` recebe uma lista de inteiros como argumentos.
 
 ```bash
-# Formato básico
-./push_swap [números]
-
-# Exemplos
-./push_swap 3 2 1
-./push_swap 5 4 3 2 1
-./push_swap "3 2 5 1 4"
+./push_swap <lista_de_numeros>
 ```
 
----
-
-## 🎮 Operações Disponíveis
-
-### Operações de Swap (Trocar)
-- **sa**: Troca os dois primeiros elementos da pilha A
-- **sb**: Troca os dois primeiros elementos da pilha B
-- **ss**: Executa sa e sb simultaneamente
-
-### Operações de Push (Empurrar)
-- **pa**: Move o elemento do topo de B para o topo de A
-- **pb**: Move o elemento do topo de A para o topo de B
-
-### Operações de Rotate (Rotacionar para cima)
-- **ra**: Rotaciona A para cima (primeiro elemento vai para o final)
-- **rb**: Rotaciona B para cima
-- **rr**: Executa ra e rb simultaneamente
-
-### Operações de Reverse Rotate (Rotacionar para baixo)
-- **rra**: Rotaciona A para baixo (último elemento vai para o início)
-- **rrb**: Rotaciona B para baixo
-- **rrr**: Executa rra e rrb simultaneamente
-
----
-
-## 💡 Exemplos de Uso
-
-### Exemplo 1: Três números
+Exemplos:
 ```bash
-$ ./push_swap 2 1 3
-sa
+./push_swap 4 67 3 87 23
+./push_swap "4 67 3 87 23"
 ```
 
-### Exemplo 2: Cinco números
-```bash
-$ ./push_swap 5 4 3 2 1
-pb
-pb
-sa
-pa
-pa
-ra
-ra
-```
+A saída é a sequência de instruções necessárias para ordenar a pilha.
 
-### Exemplo 3: Números grandes
-```bash
-$ ./push_swap 42 17 89 3 256 -15 72
-pb
-pb
-pb
-ra
-...
-```
+## 📋 Conjunto de Instruções
 
-### Exemplo 4: Validação de erros
-```bash
-$ ./push_swap 1 2 2
-Error
+As operações permitidas para manipular as pilhas são:
 
-$ ./push_swap 1 abc 3
-Error
+| Código | Operação | Descrição |
+|:---:|---|---|
+| `sa` | **Swap A** | Troca os dois primeiros elementos do topo da pilha A. |
+| `sb` | **Swap B** | Troca os dois primeiros elementos do topo da pilha B. |
+| `ss` | **Swap Both** | `sa` e `sb` simultaneamente. |
+| `pa` | **Push A** | Pega o primeiro elemento de B e coloca no topo de A. |
+| `pb` | **Push B** | Pega o primeiro elemento de A e coloca no topo de B. |
+| `ra` | **Rotate A** | Desloca todos os elementos de A uma posição acima (o primeiro vira o último). |
+| `rb` | **Rotate B** | Desloca todos os elementos de B uma posição acima. |
+| `rr` | **Rotate Both** | `ra` e `rb` simultaneamente. |
+| `rra` | **Rev. Rotate A** | Desloca todos os elementos de A uma posição abaixo (o último vira o primeiro). |
+| `rrb` | **Rev. Rotate B** | Desloca todos os elementos de B uma posição abaixo. |
+| `rrr` | **Rev. Rotate Both** | `rra` e `rrb` simultaneamente. |
 
-$ ./push_swap 2147483648
-Error
-```
+## 🧪 Validação e Erros
+
+O programa realiza verificações robustas na entrada:
+-   Argumentos não numéricos.
+-   Inteiros maiores que `MAX_INT` ou menores que `MIN_INT`.
+-   Números duplicados.
+
+Em caso de qualquer erro, o programa exibe `Error` na saída de erro padrão (stderr) e encerra a execução.
 
 ---
-
-## 🧪 Testes e Validação
-
-### Validações Implementadas
-
-- ✅ Verifica se todos os argumentos são números inteiros válidos
-- ✅ Detecta números duplicados
-- ✅ Valida overflow/underflow de inteiros (INT_MIN a INT_MAX)
-- ✅ Verifica formato correto dos números (sinais, dígitos)
-- ✅ Trata entrada vazia
-
-### Testando o Programa
-
-```bash
-# Testar com números aleatórios (usando checker da 42)
-ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_linux $ARG
-
-# Contar número de operações
-./push_swap 3 2 5 1 4 | wc -l
-
-# Testar casos limite
-./push_swap 2147483647 -2147483648 0
-./push_swap ""
-./push_swap "1 2 3 4 5"
-```
-
-### Scripts de Teste Úteis
-
-```bash
-# Gerar 100 números aleatórios e testar
-ARG=$(seq 1 100 | shuf); ./push_swap $ARG | wc -l
-
-# Testar se ordena corretamente
-ARG=$(seq 1 500 | shuf); ./push_swap $ARG | ./checker_linux $ARG
-```
-
----
-
-## 📊 Desempenho
-
-### Benchmarks Esperados
-
-| Tamanho | Operações Máximas | Operações Médias |
-|---------|-------------------|------------------|
-| 3       | 3                 | 2                |
-| 5       | 12                | 8                |
-| 100     | 700               | ~550             |
-| 500     | 5500              | ~4500            |
-
-### Complexidade
-
-- **Tempo**: O(n × log n) para o Radix Sort
-- **Espaço**: O(n) para as pilhas e estruturas auxiliares
-
----
-
-## 🛠️ Libft Integrada
-
-O projeto inclui uma biblioteca personalizada (libft) com funções úteis:
-
-- Manipulação de strings
-- Conversão de tipos (atoi, atol, atof)
-- Manipulação de listas
-- Printf personalizado
-- Get Next Line
-- Validações matemáticas
-
----
-
-## 📝 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
-## 👤 Autor
-
-**Claudio Santos** - [clados-s](https://github.com/clados-s)
-
----
-
-## 🤝 Contribuições
-
-Contribuições, issues e feature requests são bem-vindos!
-
-Se você tiver dúvidas ou sugestões, sinta-se à vontade para entrar em contato!
-
----
-
-## 📚 Recursos Úteis
-
-- [Documentação do Projeto Push_swap](https://github.com/42School/push_swap)
-- [Visualizador Push_swap](https://github.com/o-reo/push_swap_visualizer)
-- [Tutorial sobre Radix Sort](https://www.geeksforgeeks.org/radix-sort/)
-
----
-
-**42 São Paulo** | *Projeto Push_swap*
+*Documentação gerada para o projeto Push_swap da 42.*
